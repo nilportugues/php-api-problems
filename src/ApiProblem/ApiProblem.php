@@ -136,8 +136,11 @@ class ApiProblem
             self::setType($type);
         }
 
+
         if (0 === strlen($title) && self::type() === self::RFC2616 && array_key_exists($code, self::$problemStatus)) {
             self::setTitle(self::$problemStatus[$code]);
+        } else {
+            self::setTitle($title);
         }
 
         return new self(self::status(), $exception->getMessage(), self::title(), self::type(), $additionalDetails);
