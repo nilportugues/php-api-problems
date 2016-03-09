@@ -30,7 +30,6 @@ class JsonPresenter extends BasePresenter implements Presenter
     public function contents()
     {
         $rows = $this->buildContent();
-        $this->guardHasData($rows);
 
         return json_encode($rows, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
     }

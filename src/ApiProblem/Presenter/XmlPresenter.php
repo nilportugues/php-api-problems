@@ -30,7 +30,6 @@ class XmlPresenter extends BasePresenter implements Presenter
     public function contents()
     {
         $rows = $this->buildContent();
-        $this->guardHasData($rows);
         $lines = $this->writeXml($rows);
 
         return <<<XML

@@ -9,7 +9,6 @@
  */
 namespace NilPortugues\Api\Problem\Presenter;
 
-use Exception;
 use NilPortugues\Api\Problem\ApiProblem;
 
 /**
@@ -55,28 +54,19 @@ abstract class BasePresenter implements Presenter
      */
     protected function buildContent()
     {
-        return array_filter(
-            array_merge(
-                array_filter($this->apiProblem->additionalDetails()),
-                array_filter([
-                    'type' => $this->apiProblem->type(),
-                    'status' => $this->apiProblem->status(),
-                    'title' => $this->apiProblem->title(),
-                    'detail' => $this->apiProblem->detail(),
-                ])
-            )
+        return array_reverse(
+            array_filter(
+                array_merge(
+                    array_filter($this->apiProblem->additionalDetails()),
+                    array_filter([
+                        'type' => $this->apiProblem->type(),
+                        'status' => $this->apiProblem->status(),
+                        'title' => $this->apiProblem->title(),
+                        'detail' => $this->apiProblem->detail(),
+                    ])
+                )
+            ),
+            true
         );
-    }
-
-    /**
-     * @param $rows
-     *
-     * @throws Exception
-     */
-    protected function guardHasData($rows)
-    {
-        if (empty($rows)) {
-            throw new Exception('ApiProblem provided has no data.');
-        }
     }
 }

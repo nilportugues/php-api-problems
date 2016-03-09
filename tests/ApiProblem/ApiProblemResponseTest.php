@@ -17,10 +17,10 @@ class ApiProblemResponseTest extends \PHPUnit_Framework_TestCase
 
         $body = <<<JSON
 {
-    "type": "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html",
-    "status": 404,
+    "detail": "User with id 5 not found.",
     "title": "Not Found",
-    "detail": "User with id 5 not found."
+    "status": 404,
+    "type": "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
 }
 JSON;
 
@@ -38,10 +38,10 @@ JSON;
         $body = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
 <problem xmlns="urn:ietf:rfc:XXXX">
-<type>http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</type>
-<status>404</status>
-<title>Not Found</title>
 <detail>User with id 5 not found.</detail>
+<title>Not Found</title>
+<status>404</status>
+<type>http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</type>
 </problem>
 XML;
 
