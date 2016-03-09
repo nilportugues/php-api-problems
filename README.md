@@ -4,21 +4,78 @@
 
 PSR7 Response implementation for the [Problem Details for HTTP APIs](http://tools.ietf.org/html/draft-nottingham-http-problem-07)  specification draft.  
 
-### Usage
+### The ApiProblem Object
 
-#### Single Problem Response 
+#### Usage
+ 
 To report a single error, all you need to do is pass in the mandatory parameters and you'll be fine.
+
+**Using the constructor**
 
 ```php
 <?php
+//Build the ApiProblem instance from constructor arguments
+$apiProblem = new ApiProblem(
+    404,
+    'User with id 5 not found.',
+    'Not Found', 
+    'user.not_found'
+); 
+
+$presenter = new JsonPresenter($apiProblem); //or XmlPresenter
+return new ApiProblemResponse($presenter);  
 ```
 
-#### Multiple Problems Response
+**Using an Exception**
+
+```php
+<?php
+try {
+    //...your code throwing an exception
+    throw new \Exception('User with id 5 not found.', 404);   
+     
+} catch(\Exception $exception) {
+
+    $problem = ApiProblem::fromException($exception);
+    $presenter = new JsonPresenter($apiProblem); //or XmlPresenter
+    return new ApiProblemResponse($presenter);        
+}
+```
+
+#### Multiple Problems, one object
 
 In order to report more than problem, you must use the additional details parameter.
  
 ```php
 <?php
+
+try {
+
+    // some code of yours throws an exception... for instance:
+    throw new \Exception('User data is not valid.', 500);
+           
+} catch(\Exception $exception) {
+
+    $additionalDetails = [
+        'errors' => [
+            ['name' => 'username', 'error' => 'Username must be at least 5 characters long.'],
+            ['name' => 'email', 'error' => 'Provided address is not a valid email.'],
+        ],
+    ]
+
+    $apiProblem = ApiProblem::fromException(
+        $exception,
+        'Input values do not match the requirements',
+        'user.invalid_data',
+        $additionalDetails;
+    ); 
+
+    $presenter = new JsonPresenter($apiProblem); //or XmlPresenter
+    
+    return new ApiProblemResponse($presenter);
+}
+
+       
 ```
 
 #### JSON Output
@@ -32,9 +89,20 @@ Content-Type: application/problem+json
 **Body**
 ```json
 {
-  "type": "http://example.com/probs/out-of-credit",
-  "title": "You do not have enough credit.",
-  "detail": "Your current balance is 30, but that costs 50."
+    "detail": "User data is not valid.",
+    "title": "Input values do not match the requirements",
+    "status": 500,
+    "type": "user.invalid_data",
+    "errors": [
+        {
+            "name": "username",
+            "error": "Username must be at least 5 characters long."
+        },
+        {
+            "name": "email",
+            "error": "Provided address is not a valid email."
+        }        
+    ]
 }
 ```
 
@@ -51,9 +119,20 @@ Content-Type: application/problem+xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <problem xmlns="urn:ietf:rfc:XXXX">
-  <type>http://example.com/probs/out-of-credit</type>
-  <title>You do not have enough credit.</title>
-  <detail>Your current balance is 30, but that costs 50.</detail>
+  <detail>User data is not valid.</detail>
+  <title>Input values do not match the requirements</title>
+  <status>500</status>
+  <type>user.invalid_data</type>
+  <errors>
+    <item>
+      <name>username</name>
+      <error>Username must be at least 5 characters long.</error>
+    </item>
+    <item>
+      <name>email</name>
+      <error>Provided address is not a valid email.</error>
+    </item>    
+  </errors>
 </problem>
 ```
 
