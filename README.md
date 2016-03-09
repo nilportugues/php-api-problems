@@ -75,7 +75,7 @@ try {
  
 **Headers**
 ```
-HTTP/1.1 403 Forbidden
+HTTP/1.1 500 Bad Request
 Content-Type: application/problem+json
 ```   
 
@@ -103,7 +103,7 @@ Content-Type: application/problem+json
  
 **Headers**
 ```
-HTTP/1.1 403 Forbidden
+HTTP/1.1 500 Bad Request
 Content-Type: application/problem+xml
 ```   
 
