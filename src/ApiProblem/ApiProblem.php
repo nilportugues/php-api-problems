@@ -130,20 +130,13 @@ class ApiProblem
         $eCode = $exception->getCode();
         $code  = (isset($eCode) && is_int($eCode)) ? $eCode : 500;
 
-        self::setStatus($code);
 
-        if (0 !== strlen($type)) {
-            self::setType($type);
+        if (0 === strlen($title) && 0 === strlen($type) && array_key_exists($code, self::$problemStatus)) {
+            $title = (self::$problemStatus[$code]);
+            $type = self::RFC2616;
         }
 
-
-        if (0 === strlen($title) && self::type() === self::RFC2616 && array_key_exists($code, self::$problemStatus)) {
-            self::setTitle(self::$problemStatus[$code]);
-        } else {
-            self::setTitle($title);
-        }
-
-        return new self(self::status(), $exception->getMessage(), self::title(), self::type(), $additionalDetails);
+        return new self($code, $exception->getMessage(), $title, $type, $additionalDetails);
     }
 
     /**
@@ -227,7 +220,7 @@ class ApiProblem
      */
     protected function setDetail($detail)
     {
-        Assert::isNotEmpty($detail, 'Detail field cannot be an empty string');
+        Assert::notEmpty($detail, 'Detail field cannot be an empty string');
 
         $this->detail = $detail;
     }

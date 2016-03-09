@@ -1,9 +1,14 @@
 {
     "name": "nilportugues/api-problems",
+    "type": "library",
+    "description": "PSR7 Response implementation for the Problem Details for HTTP APIs",
+    "homepage": "http://nilportugues.com",
+    "license": "MIT",
     "authors": [
         {
             "name": "Nil Portugués Calderó",
-            "email": "contact@nilportugues.com"
+            "email": "contact@nilportugues.com",
+            "role": "Project Lead Developer"
         }
     ],
     "require": {
@@ -14,5 +19,18 @@
     "require-dev": {
         "phpunit/phpunit": "4.*",
         "fabpot/php-cs-fixer": "~1.9"
+    },
+    "autoload": {
+      "psr-4": {
+        "NilPortugues\\Api\\Problem\\" : "src/ApiProblem"
+      }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "NilPortugues\\Tests\\Api\\Problem\\" : "tests/ApiProblem"
+      }
+    },
+    "config": {
+      "preferred-install": "dist"
     }
 }
