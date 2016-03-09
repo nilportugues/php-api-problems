@@ -2,6 +2,7 @@
     "name": "nilportugues/api-problems",
     "type": "library",
     "description": "PSR7 Response implementation for the Problem Details for HTTP APIs",
+    "keywords": ["xml", "json", "api", "transformer", "psr7", "response"],
     "homepage": "http://nilportugues.com",
     "license": "MIT",
     "authors": [
