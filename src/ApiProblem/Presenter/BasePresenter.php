@@ -2,20 +2,18 @@
 /**
  * Author: Nil Portugués Calderó <contact@nilportugues.com>
  * Date: 8/03/16
- * Time: 23:30
+ * Time: 23:30.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace NilPortugues\Api\Problem\Presenter;
 
 use Exception;
 use NilPortugues\Api\Problem\ApiProblem;
 
 /**
- * Class BasePresenter
- * @package NilPortugues\Api\Problem\Presenter
+ * Class BasePresenter.
  */
 abstract class BasePresenter implements Presenter
 {
@@ -61,9 +59,9 @@ abstract class BasePresenter implements Presenter
             array_merge(
                 array_filter($this->apiProblem->additionalDetails()),
                 array_filter([
-                    'type'   => $this->apiProblem->type(),
+                    'type' => $this->apiProblem->type(),
                     'status' => $this->apiProblem->status(),
-                    'title'  => $this->apiProblem->title(),
+                    'title' => $this->apiProblem->title(),
                     'detail' => $this->apiProblem->detail(),
                 ])
             )

@@ -2,20 +2,17 @@
 /**
  * Author: Nil Portugués Calderó <contact@nilportugues.com>
  * Date: 8/03/16
- * Time: 22:29
+ * Time: 22:29.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace NilPortugues\Api\Problem;
 
 use NilPortugues\Assert\Assert;
 
 /**
  * Object describing an API-Problem payload.
- *
- * @package NilPortugues\Api\Problem
  */
 class ApiProblem
 {
@@ -28,7 +25,8 @@ class ApiProblem
      */
     protected $title;
     /**
-     * URL describing the problem type; defaults to HTTP status codes
+     * URL describing the problem type; defaults to HTTP status codes.
+     *
      * @var string
      */
     protected $type = self::RFC2616;
@@ -53,7 +51,7 @@ class ApiProblem
     protected $additionalDetails = [];
 
     /**
-     * Status titles for common problems
+     * Status titles for common problems.
      *
      * @var array
      */
@@ -128,8 +126,7 @@ class ApiProblem
     public static function fromException(\Exception $exception, $title = '', $type = '', array $additionalDetails = [])
     {
         $eCode = $exception->getCode();
-        $code  = (isset($eCode) && is_int($eCode)) ? $eCode : 500;
-
+        $code = (isset($eCode) && is_int($eCode)) ? $eCode : 500;
 
         if (0 === strlen($title) && 0 === strlen($type) && array_key_exists($code, self::$problemStatus)) {
             $title = (self::$problemStatus[$code]);
@@ -156,7 +153,7 @@ class ApiProblem
      */
     protected function setAdditionalDetails(array &$additionalDetails)
     {
-        Assert::hasKeyFormat($additionalDetails, function($key){
+        Assert::hasKeyFormat($additionalDetails, function ($key) {
             Assert::isAlpha($key, 'Key requires [A-Za-z] characters only.');
         });
 

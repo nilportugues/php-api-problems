@@ -2,17 +2,15 @@
 /**
  * Author: Nil Portugués Calderó <contact@nilportugues.com>
  * Date: 8/03/16
- * Time: 22:55
+ * Time: 22:55.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace NilPortugues\Api\Problem\Presenter;
 
 /**
- * Class XmlPresenter
- * @package NilPortugues\Api\Problem\Presenter
+ * Class XmlPresenter.
  */
 class XmlPresenter extends BasePresenter implements Presenter
 {
@@ -26,6 +24,7 @@ class XmlPresenter extends BasePresenter implements Presenter
 
     /**
      * @return string
+     *
      * @throws \Exception
      */
     public function contents()
@@ -40,7 +39,6 @@ class XmlPresenter extends BasePresenter implements Presenter
 $lines
 </problem>
 XML;
-
     }
 
     /**
@@ -57,5 +55,4 @@ XML;
 
         return implode(PHP_EOL, $lines);
     }
-
 }
