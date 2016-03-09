@@ -4,9 +4,7 @@
 
 PSR7 Response implementation for the [Problem Details for HTTP APIs](http://tools.ietf.org/html/draft-nottingham-http-problem-07)  specification draft.  
 
-### The ApiProblem Object
-
-#### Usage
+## Usage
  
 To report a single error, all you need to do is pass in the mandatory parameters and you'll be fine.
 
@@ -42,7 +40,7 @@ try {
 }
 ```
 
-#### Multiple Problems, one object
+## Multiple Problems, one object
 
 In order to report more than problem, you must use the additional details parameter.
  
