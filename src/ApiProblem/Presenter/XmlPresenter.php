@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace NilPortugues\Api\Problem\Presenter;
 
 /**
@@ -30,26 +31,34 @@ class XmlPresenter extends BasePresenter implements Presenter
     public function contents()
     {
         $rows = $this->buildContent();
-        $lines = $this->writeXml($rows);
+        $lines = [];
+        $flattenedLines = $this->writeXml($rows, $lines);
 
         return <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
 <problem xmlns="urn:ietf:rfc:XXXX">
-$lines
+$flattenedLines
 </problem>
 XML;
     }
 
     /**
      * @param array $rows
+     * @param array $lines
      *
      * @return string
      */
-    protected function writeXml(array &$rows)
+    protected function writeXml(array $rows, array $lines = [])
     {
-        $lines = [];
         foreach ($rows as $key => $value) {
-            $lines[] = sprintf('<%s>%s</%s>', $key, $value, $key);
+            if (\is_array($value)) {
+                if (\is_numeric($key)) {
+                    $key = 'item';
+                }
+                $lines[] = sprintf("<%s>\n%s\n</%s>", $key, $this->writeXml($value), $key);
+            } else {
+                $lines[] = sprintf('<%s>%s</%s>', $key, $value, $key);
+            }
         }
 
         return implode(PHP_EOL, $lines);
