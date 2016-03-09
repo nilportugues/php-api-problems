@@ -69,8 +69,6 @@ try {
     
     return new ApiProblemResponse($presenter);
 }
-
-       
 ```
 
 #### JSON Output
