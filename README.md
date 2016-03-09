@@ -12,7 +12,6 @@ To report a single error, all you need to do is pass in the mandatory parameters
 
 ```php
 <?php
-//Build the ApiProblem instance from constructor arguments
 $apiProblem = new ApiProblem(
     404,
     'User with id 5 not found.',
@@ -46,9 +45,7 @@ In order to report more than problem, you must use the additional details parame
  
 ```php
 <?php
-
 try {
-
     // some code of yours throws an exception... for instance:
     throw new \Exception('User data is not valid.', 500);
            
