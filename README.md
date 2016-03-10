@@ -1,7 +1,7 @@
 # PSR7 HTTP APIs Problem Response 
 
 [![Build Status](https://travis-ci.org/nilportugues/php-api-problems.svg?branch=master)](https://travis-ci.org/nilportugues/php-api-problems)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nilportugues/php-api-problems/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nilportugues/php-api-problems/?branch=master) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/246f4e3d-4574-4dbb-82e5-00b0008bb11e/mini.png)](https://insight.sensiolabs.com/projects/246f4e3d-4574-4dbb-82e5-00b0008bb11e) 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nilportugues/php-api-problems/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nilportugues/php-api-problems/?branch=master) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/246f4e3d-4574-4dbb-82e5-00b0008bb11e/mini.png?)](https://insight.sensiolabs.com/projects/246f4e3d-4574-4dbb-82e5-00b0008bb11e) 
 [![Latest Stable Version](https://poser.pugx.org/nilportugues/api-problems/v/stable)](https://packagist.org/packages/nilportugues/api-problems) 
 [![Total Downloads](https://poser.pugx.org/nilportugues/api-problems/downloads)](https://packagist.org/packages/nilportugues/api-problems) 
 [![License](https://poser.pugx.org/nilportugues/api-problems/license)](https://packagist.org/packages/nilportugues/api-problems) 
