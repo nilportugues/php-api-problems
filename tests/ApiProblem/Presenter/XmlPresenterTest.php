@@ -34,6 +34,7 @@ class XmlPresenterTest extends \PHPUnit_Framework_TestCase
     public function testItCanWriteXmlFromNestedArray()
     {
         $expected = <<<JSON
+<?xml version="1.0" encoding="UTF-8"?>
 <problem xmlns="urn:ietf:rfc:XXXX">
 <detail>User data is not valid.</detail>
 <title>Input values do not match the requirements</title>
