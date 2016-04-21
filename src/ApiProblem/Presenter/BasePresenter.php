@@ -61,9 +61,9 @@ abstract class BasePresenter implements Presenter
                     array_filter($this->apiProblem->additionalDetails()),
                     array_filter([
                         'type' => $this->apiProblem->type(),
+                        'detail' => $this->apiProblem->detail(),
                         'status' => $this->apiProblem->status(),
                         'title' => $this->apiProblem->title(),
-                        'detail' => $this->apiProblem->detail(),
                     ])
                 )
             ),
