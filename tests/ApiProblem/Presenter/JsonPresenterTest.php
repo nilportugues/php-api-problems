@@ -35,9 +35,9 @@ class JsonPresenterTest extends \PHPUnit_Framework_TestCase
     {
         $expected = <<<JSON
 {
-    "detail": "User data is not valid.",
     "title": "Input values do not match the requirements",
     "status": 500,
+    "detail": "User data is not valid.",
     "type": "user.invalid_data",
     "errors": [
         {
@@ -55,9 +55,9 @@ JSON;
     {
         $expected = <<<JSON
 {
-    "detail": "User data is not valid.",
     "title": "Input values do not match the requirements",
     "status": 500,
+    "detail": "User data is not valid.",
     "type": "user.invalid_data",
     "errors": [
         {
