@@ -86,10 +86,10 @@ Content-Type: application/problem+json
 
 **Body**
 ```json
-{
-    "detail": "User data is not valid.",
+{    
     "title": "Input values do not match the requirements",
     "status": 500,
+    "detail": "User data is not valid.",
     "type": "user.invalid_data",
     "errors": [
         {
@@ -116,10 +116,10 @@ Content-Type: application/problem+xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<problem xmlns="urn:ietf:rfc:XXXX">
-  <detail>User data is not valid.</detail>
+<problem xmlns="urn:ietf:rfc:XXXX">  
   <title>Input values do not match the requirements</title>
   <status>500</status>
+  <detail>User data is not valid.</detail>
   <type>user.invalid_data</type>
   <errors>
     <item>
