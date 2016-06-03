@@ -7,7 +7,7 @@
 [![License](https://poser.pugx.org/nilportugues/api-problems/license)](https://packagist.org/packages/nilportugues/api-problems) 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://paypal.me/nilportugues)
 
-PSR7 Response implementation for the [Problem Details for HTTP APIs](http://tools.ietf.org/html/draft-nottingham-http-problem-07)  specification draft.  
+PSR7 Response implementation for the [Problem Details for HTTP APIs (RFC7807)](https://tools.ietf.org/html/rfc7807)  specification.  
 
 ## Usage
  
