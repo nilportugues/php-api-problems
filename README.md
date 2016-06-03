@@ -22,11 +22,12 @@ use NilPortugues\Api\Problem\ApiProblemResponse;
 
 $additionalDetails = []; //you may pass additional details too.
 
-ApiProblemResponse::json(404,'User with id 5 not found.', 'Not Found', 'user.not_found', $additionalDetails);
-ApiProblemResponse::xml(404,'User with id 5 not found.', 'Not Found', 'user.not_found', $additionalDetails);
+/**@var $response is a PSR7 response */
+$response = ApiProblemResponse::json(404,'User with id 5 not found.', 'Not Found', 'user.not_found', $additionalDetails);
+$response = ApiProblemResponse::xml(404,'User with id 5 not found.', 'Not Found', 'user.not_found', $additionalDetails);
 
-ApiProblemResponse::fromExceptionToJson($exception);
-ApiProblemResponse::fromExceptionToXml($exception);
+$response = ApiProblemResponse::fromExceptionToJson($exception);
+$response = ApiProblemResponse::fromExceptionToXml($exception);
 ```
 
 **Using the constructor and handling the response yourself.**
