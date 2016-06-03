@@ -13,10 +13,29 @@ PSR7 Response implementation for the [Problem Details for HTTP APIs (RFC7807)](h
  
 To report a single error, all you need to do is pass in the mandatory parameters and you'll be fine.
 
-**Using the constructor**
+**Straightforward usage (recommended)**
+
+This is probably the fastest way and it's really convenient as it hides the presenter and creating the instances from you.
 
 ```php
-<?php
+use NilPortugues\Api\Problem\ApiProblemResponse;
+
+$additionalDetails = []; //you may pass additional details too.
+
+ApiProblemResponse::json(404,'User with id 5 not found.', 'Not Found', 'user.not_found', $additionalDetails);
+ApiProblemResponse::xml(404,'User with id 5 not found.', 'Not Found', 'user.not_found', $additionalDetails);
+
+ApiProblemResponse::fromExceptionToJson($exception);
+ApiProblemResponse::fromExceptionToXml($exception);
+```
+
+**Using the constructor and handling the response yourself.**
+
+```php
+use NilPortugues\Api\Problem\ApiProblem;
+use NilPortugues\Api\Problem\ApiProblemResponse;
+use NilPortugues\Api\Problem\Presenter\JsonPresenter;
+
 $apiProblem = new ApiProblem(
     404,
     'User with id 5 not found.',
@@ -28,10 +47,13 @@ $presenter = new JsonPresenter($apiProblem); //or XmlPresenter
 return new ApiProblemResponse($presenter);  
 ```
 
-**Using an Exception**
+**Using an Exception and handling the response yourself.**
 
 ```php
-<?php
+use NilPortugues\Api\Problem\ApiProblem;
+use NilPortugues\Api\Problem\ApiProblemResponse;
+use NilPortugues\Api\Problem\Presenter\JsonPresenter;
+
 try {
     //...your code throwing an exception
     throw new \Exception('User with id 5 not found.', 404);   
@@ -49,7 +71,10 @@ try {
 In order to report more than problem, you must use the additional details parameter.
  
 ```php
-<?php
+use NilPortugues\Api\Problem\ApiProblem;
+use NilPortugues\Api\Problem\ApiProblemResponse;
+use NilPortugues\Api\Problem\Presenter\JsonPresenter;
+
 try {
     // some code of yours throws an exception... for instance:
     throw new \Exception('User data is not valid.', 500);
@@ -116,7 +141,7 @@ Content-Type: application/problem+xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<problem xmlns="urn:ietf:rfc:XXXX">  
+<problem xmlns="urn:ietf:rfc:7807">  
   <title>Input values do not match the requirements</title>
   <status>500</status>
   <detail>User data is not valid.</detail>

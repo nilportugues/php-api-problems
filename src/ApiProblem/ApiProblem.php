@@ -10,6 +10,7 @@
 
 namespace NilPortugues\Api\Problem;
 
+use Exception;
 use NilPortugues\Assert\Assert;
 
 /**
@@ -117,14 +118,14 @@ class ApiProblem
     }
 
     /**
-     * @param \Exception $exception
-     * @param string     $title
-     * @param string     $type
-     * @param array      $additionalDetails
+     * @param Exception $exception
+     * @param string    $title
+     * @param string    $type
+     * @param array     $additionalDetails
      *
      * @return ApiProblem
      */
-    public static function fromException(\Exception $exception, $title = '', $type = '', array $additionalDetails = [])
+    public static function fromException(Exception $exception, $title = '', $type = '', array $additionalDetails = [])
     {
         $eCode = $exception->getCode();
         $code = (isset($eCode) && is_int($eCode)) ? $eCode : 500;

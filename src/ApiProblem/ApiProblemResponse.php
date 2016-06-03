@@ -10,12 +10,12 @@
 
 namespace NilPortugues\Api\Problem;
 
+use Exception;
 use GuzzleHttp\Psr7\Response;
+use NilPortugues\Api\Problem\Presenter\JsonPresenter;
 use NilPortugues\Api\Problem\Presenter\Presenter;
+use NilPortugues\Api\Problem\Presenter\XmlPresenter;
 
-/**
- * Class ApiProblemResponse.
- */
 class ApiProblemResponse extends Response
 {
     /**
@@ -40,5 +40,67 @@ class ApiProblemResponse extends Response
     protected function responseHeader(Presenter $presenter)
     {
         return ($presenter->format() === 'xml') ? 'application/problem+xml' : 'application/problem+json';
+    }
+
+    /**
+     * @param $status
+     * @param $detail
+     * @param string $title
+     * @param string $type
+     * @param array  $additionalDetails
+     *
+     * @return ApiProblemResponse
+     */
+    public static function json($status, $detail, $title = '', $type = '', array $additionalDetails = [])
+    {
+        return new self(new JsonPresenter(new ApiProblem($status, $detail, $title, $type, $additionalDetails)));
+    }
+
+    /**
+     * @param Exception $exception
+     * @param string    $title
+     * @param string    $type
+     * @param array     $additionalDetails
+     *
+     * @return ApiProblemResponse
+     */
+    public static function fromExceptionToJson(
+        Exception $exception,
+        $title = '',
+        $type = '',
+        array $additionalDetails = []
+    ) {
+        return new self(new JsonPresenter(ApiProblem::fromException($exception, $title, $type, $additionalDetails)));
+    }
+
+    /**
+     * @param $status
+     * @param $detail
+     * @param string $title
+     * @param string $type
+     * @param array  $additionalDetails
+     *
+     * @return ApiProblemResponse
+     */
+    public static function xml($status, $detail, $title = '', $type = '', array $additionalDetails = [])
+    {
+        return new self(new XmlPresenter(new ApiProblem($status, $detail, $title, $type, $additionalDetails)));
+    }
+
+    /**
+     * @param Exception $exception
+     * @param string    $title
+     * @param string    $type
+     * @param array     $additionalDetails
+     *
+     * @return ApiProblemResponse
+     */
+    public static function fromExceptionToXml(
+        Exception $exception,
+        $title = '',
+        $type = '',
+        array $additionalDetails = []
+    ) {
+        return new self(new XmlPresenter(ApiProblem::fromException($exception, $title, $type, $additionalDetails)));
     }
 }

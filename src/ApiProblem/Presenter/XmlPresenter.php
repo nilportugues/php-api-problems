@@ -36,7 +36,7 @@ class XmlPresenter extends BasePresenter implements Presenter
 
         return <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<problem xmlns="urn:ietf:rfc:XXXX">
+<problem xmlns="urn:ietf:rfc:7807">
 $flattenedLines
 </problem>
 XML;

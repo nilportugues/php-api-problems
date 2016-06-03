@@ -35,7 +35,7 @@ class XmlPresenterTest extends \PHPUnit_Framework_TestCase
     {
         $expected = <<<JSON
 <?xml version="1.0" encoding="UTF-8"?>
-<problem xmlns="urn:ietf:rfc:XXXX">
+<problem xmlns="urn:ietf:rfc:7807">
 <title>Input values do not match the requirements</title>
 <status>500</status>
 <detail>User data is not valid.</detail>
@@ -56,7 +56,7 @@ JSON;
     {
         $expected = <<<JSON
 <?xml version="1.0" encoding="UTF-8"?>
-<problem xmlns="urn:ietf:rfc:XXXX">
+<problem xmlns="urn:ietf:rfc:7807">
 <title>Input values do not match the requirements</title>
 <status>500</status>
 <detail>User data is not valid.</detail>
