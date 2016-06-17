@@ -128,7 +128,7 @@ class ApiProblem
     public static function fromException(Exception $exception, $title = '', $type = '', array $additionalDetails = [])
     {
         $eCode = $exception->getCode();
-        $code = (isset($eCode) && is_int($eCode)) ? $eCode : 500;
+        $code = (!empty($eCode) && is_int($eCode)) ? $eCode : 500;
 
         if (0 === strlen($title) && 0 === strlen($type) && array_key_exists($code, self::$problemStatus)) {
             $title = (self::$problemStatus[$code]);
