@@ -135,7 +135,9 @@ class ApiProblem
             $type = self::RFC2616;
         }
 
-        return new self($code, $exception->getMessage(), $title, $type, $additionalDetails);
+        $detail = empty($exception->getMessage()) ? get_class($exception) : $exception->getMessage();
+
+        return new self($code, $detail, $title, $type, $additionalDetails);
     }
 
     /**
