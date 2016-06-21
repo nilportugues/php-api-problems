@@ -27,4 +27,15 @@ class ApiProblemTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Not Found', $problem->title());
         $this->assertEquals(ApiProblem::RFC2616, $problem->type());
     }
+
+    public function testItCanUseExceptionName()
+    {
+        $exception = new \PDOException();
+        $problem = ApiProblem::fromException($exception);
+
+        $this->assertEquals(500, $problem->status());
+        $this->assertEquals('PDOException', $problem->detail());
+        $this->assertEquals('Internal Server Error', $problem->title());
+        $this->assertEquals('http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html', $problem->type());
+    }
 }
