@@ -135,7 +135,11 @@ class ApiProblem
             $type = self::RFC2616;
         }
 
-        $detail = empty($exception->getMessage()) ? get_class($exception) : $exception->getMessage();
+        $detail = $exception->getMessage();
+        if (empty($detail)) {
+            $className = explode('\\', get_class($exception));
+            $detail = array_pop($className);
+        }
 
         return new self($code, $detail, $title, $type, $additionalDetails);
     }
