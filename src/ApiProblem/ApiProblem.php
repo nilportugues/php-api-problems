@@ -131,7 +131,7 @@ class ApiProblem
     }
     
      /**
-     * @param Throwable $exception
+     * @param Throwable $throwable
      * @param string    $title
      * @param string    $type
      * @param array     $additionalDetails
