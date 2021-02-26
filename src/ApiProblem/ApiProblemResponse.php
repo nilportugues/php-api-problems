@@ -72,6 +72,23 @@ class ApiProblemResponse extends Response
     ) {
         return new self(new JsonPresenter(ApiProblem::fromException($exception, $title, $type, $additionalDetails)));
     }
+    
+    /**
+     * @param Throwable $throwable
+     * @param string    $title
+     * @param string    $type
+     * @param array     $additionalDetails
+     *
+     * @return ApiProblemResponse
+     */
+    public static function froThrowableToJson(
+        Throwable $throwable,
+        $title = '',
+        $type = '',
+        array $additionalDetails = []
+    ) {
+        return new self(new JsonPresenter(ApiProblem::fromThrowable($throwable, $title, $type, $additionalDetails)));
+    }
 
     /**
      * @param $status
@@ -102,5 +119,22 @@ class ApiProblemResponse extends Response
         array $additionalDetails = []
     ) {
         return new self(new XmlPresenter(ApiProblem::fromException($exception, $title, $type, $additionalDetails)));
+    }
+    
+    /**
+     * @param Throwable $throwable
+     * @param string    $title
+     * @param string    $type
+     * @param array     $additionalDetails
+     *
+     * @return ApiProblemResponse
+     */
+    public static function fromThroableToXml(
+        Throwable $throwable,
+        $title = '',
+        $type = '',
+        array $additionalDetails = []
+    ) {
+        return new self(new XmlPresenter(ApiProblem::fromThrowable($throwable, $title, $type, $additionalDetails)));
     }
 }

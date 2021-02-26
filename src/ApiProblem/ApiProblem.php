@@ -127,6 +127,18 @@ class ApiProblem
      */
     public static function fromException(Exception $exception, $title = '', $type = '', array $additionalDetails = [])
     {
+        return self::fromThrowable($exception, $title, $type, $additionalDetails);
+    }
+    
+     /**
+     * @param Throwable $throwable
+     * @param string    $title
+     * @param string    $type
+     * @param array     $additionalDetails
+     *
+     * @return ApiProblem
+     */
+    public static function fromThrowable(Throwable $throwable, $title = '', $type = '', array $additionalDetails = []) {
         $eCode = $exception->getCode();
         $code = (!empty($eCode) && is_int($eCode)) ? $eCode : 500;
 
